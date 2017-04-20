@@ -597,7 +597,6 @@ controller_status_entry = JType('OFControllerStatusEntry') \
         .op(read='OFControllerStatusEntryVer$version.READER.readFrom(bb)', \
             write='$name.writeTo(bb)')
 
-
 default_mtype_to_jtype_convert_map = {
         'uint8_t' : u8,
         'uint16_t' : u16,
@@ -646,8 +645,6 @@ default_mtype_to_jtype_convert_map = {
         'of_app_code_t': app_code,  
         'of_sig_id_t': sig_id,
         'of_table_desc_t': table_desc,
-        'of_odu_sig_id_t': odu_sig_id,
-        'of_och_sig_id_t' : sig_id,
         'of_controller_status_entry_t' : controller_status_entry,
         'of_time_t' : of_time,
         'of_header_t' : of_message,
@@ -711,16 +708,10 @@ exceptions = {
         'of_oxm_pbb_uca' : { 'value' : boolean_value },
         'of_oxm_pbb_uca_masked' : { 'value' : boolean_value, 'value_mask' : boolean_value },
 
-        'of_oxm_conntrack_state' : { 'value' : u32obj },
-        'of_oxm_conntrack_state_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-        'of_oxm_conntrack_zone' : { 'value' : u16obj },
-        'of_oxm_conntrack_mark' : { 'value' : u32obj },
-        'of_oxm_conntrack_mark_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-        'of_oxm_conntrack_label' : { 'value' : port_bitmap_128 },
-        'of_oxm_conntrack_label_masked' : { 'value' : port_bitmap_128, 'value_mask' : port_bitmap_128 },
-
         'of_oxm_tcp_flags' : { 'value' : u16obj },
         'of_oxm_tcp_flags_masked' : { 'value' : u16obj, 'value_mask' : u16obj },
+        'of_oxm_ovs_tcp_flags' : { 'value' : u16obj },
+        'of_oxm_ovs_tcp_flags_masked' : { 'value' : u16obj, 'value_mask' : u16obj },
         'of_oxm_actset_output' : { 'value' : of_port },
         'of_oxm_actset_output_masked' : { 'value' : of_port, 'value_mask' : of_port },
         'of_oxm_packet_type' : { 'value' : packet_type },
@@ -813,6 +804,9 @@ exceptions = {
         'of_oxm_bsn_vfi' : { 'value' : vfi },
         'of_oxm_bsn_vfi_masked' : { 'value' : vfi, 'value_mask' : vfi },
 
+        'of_oxm_bsn_ip_fragmentation' : { 'value' : boolean_value },
+        'of_oxm_bsn_ip_fragmentation_masked' : { 'value' : boolean_value, 'value_mask' : boolean_value },
+
         'of_table_stats_entry': { 'wildcards': table_stats_wildcards },
         'of_match_v1': { 'vlan_vid' : vlan_vid_match, 'vlan_pcp': vlan_pcp,
                 'eth_type': eth_type, 'ip_dscp': ip_dscp, 'ip_proto': ip_proto,
@@ -863,92 +857,8 @@ exceptions = {
         'of_oxm_och_sigatt_basic' : { 'value' : u32obj },
 
         'of_bundle_add_msg' : { 'data' : of_message },
-
-        'of_oxm_exp_odu_sigtype' : { 'value' : u8obj },
-        'of_oxm_exp_och_sigtype' : { 'value' : u8obj },
-
-        'of_oxm_reg0' : { 'value' : u32obj },
-        'of_oxm_reg0_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg1' : { 'value' : u32obj },
-        'of_oxm_reg1_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg2' : { 'value' : u32obj },
-        'of_oxm_reg2_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg3' : { 'value' : u32obj },
-        'of_oxm_reg3_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg4' : { 'value' : u32obj },
-        'of_oxm_reg4_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg5' : { 'value' : u32obj },
-        'of_oxm_reg5_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg6' : { 'value' : u32obj },
-        'of_oxm_reg6_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_reg7' : { 'value' : u32obj },
-        'of_oxm_reg7_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_nsp' : { 'value' : u32obj },
-        'of_oxm_nsp_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_nsi' : { 'value' : u8obj },
-        'of_oxm_nsi_masked' : { 'value' : u8obj, 'value_mask' : u8obj },
-
-        'of_oxm_nsh_c1' : { 'value' : u32obj },
-        'of_oxm_nsh_c1_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_nsh_c2' : { 'value' : u32obj },
-        'of_oxm_nsh_c2_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_nsh_c3' : { 'value' : u32obj },
-        'of_oxm_nsh_c3_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_nsh_c4' : { 'value' : u32obj },
-        'of_oxm_nsh_c4_masked' : { 'value' : u32obj, 'value_mask' : u32obj },
-
-        'of_oxm_nsh_mdtype' : { 'value' : u8obj },
-        'of_oxm_nsh_mdtype_masked' : { 'value' : u8obj, 'value_mask' : u8obj },
-
-        'of_oxm_nsh_np' : { 'value' : u8obj },
-        'of_oxm_nsh_np_masked' : { 'value' : u8obj, 'value_mask' : u8obj },
-
-        'of_oxm_encap_eth_src' : { 'value' : mac_addr },
-        'of_oxm_encap_eth_src_masked' : { 'value' : mac_addr, 'value_mask' : mac_addr },
-
-        'of_oxm_encap_eth_dst' : { 'value' : mac_addr },
-        'of_oxm_encap_eth_dst_masked' : { 'value' : mac_addr, 'value_mask' : mac_addr },
-
-        'of_oxm_encap_eth_type' : { 'value' : u16obj },
-        'of_oxm_encap_eth_type_masked' : { 'value' : u16obj, 'value_mask' : u16obj },
-
-        'of_oxm_tun_flags' : { 'value' : u16obj },
-        'of_oxm_tun_flags_masked' : { 'value' : u16obj, 'value_mask' : u16obj },
-
-        'of_oxm_tun_gbp_id' : { 'value' : u16obj },
-        'of_oxm_tun_gbp_id_masked' : { 'value' : u16obj, 'value_mask' : u16obj },
-
-        'of_oxm_tun_gbp_flags' : { 'value' : u8obj },
-        'of_oxm_tun_gbp_flags_masked' : { 'value' : u8obj, 'value_mask' : u8obj },
-
-        'of_oxm_tun_gpe_np' : { 'value' : u8obj },
-        'of_oxm_tun_gpe_np_masked' : { 'value' : u8obj, 'value_mask' : u8obj },
-
-        'of_oxm_tun_gpe_flags' : { 'value' : u8obj },
-        'of_oxm_tun_gpe_flags_masked' : { 'value' : u8obj, 'value_mask' : u8obj },
         'of_flow_stats_request' : { 'out_group' : of_group },
-        'of_flow_lightweight_stats_request' : { 'out_group' : of_group },
-
-        'of_oxm_ofdpa_mpls_type' : { 'value': u16obj },
-
-        'of_oxm_ofdpa_qos_index': { 'value': u8obj },
-
-        'of_oxm_ofdpa_mpls_l2_port': { 'value': u32obj },
-        'of_oxm_ofdpa_mpls_l2_port_masked': { 'value': u32obj, 'value_mask': u32obj },
-
-        'of_oxm_ofdpa_ovid': { 'value': u16obj },
+        'of_flow_lightweight_stats_request' : { 'out_group' : of_group }
 }
 
 

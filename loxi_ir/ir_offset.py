@@ -26,7 +26,6 @@ ofp_constants = dict(
     OF_ETH_ALEN = 6,
     OF_DESC_STR_LEN   = 256,
     OF_SERIAL_NUM_LEN = 32,
-    OF_APP_CODE_LEN = 15, 	
     OF_CONTROLLER_URI_LEN = 32
 )
 
@@ -134,8 +133,6 @@ of_base_lengths = dict(
     of_sig_id_t = (6, True),
     of_bitmap_256_t = (32, True),
     of_bitmap_512_t = (64, True),
-    of_odu_sig_id_t = (16, True),
-    of_och_sig_id_t = (6, True),
     of_time_t = (16, True)
 )
 

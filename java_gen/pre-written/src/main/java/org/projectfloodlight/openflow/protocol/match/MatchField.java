@@ -29,8 +29,6 @@ import org.projectfloodlight.openflow.types.U8;
 import org.projectfloodlight.openflow.types.UDF;
 import org.projectfloodlight.openflow.types.VRF;
 import org.projectfloodlight.openflow.types.VlanPcp;
-import org.projectfloodlight.openflow.types.CircuitSignalID;
-import org.projectfloodlight.openflow.types.OduSignalID;
 import org.projectfloodlight.openflow.types.VxlanNI;
 import org.projectfloodlight.openflow.types.VFI;
 
@@ -215,6 +213,10 @@ public class MatchField<F extends OFValueType<F>> {
             new MatchField<U16>("tcp_flags", MatchFields.TCP_FLAGS,
                     new Prerequisite<IpProtocol>(MatchField.IP_PROTO, IpProtocol.TCP));
 
+    public final static MatchField<U16> OVS_TCP_FLAGS =
+            new MatchField<U16>("ovs_tcp_flags", MatchFields.OVS_TCP_FLAGS,
+                    new Prerequisite<IpProtocol>(MatchField.IP_PROTO, IpProtocol.TCP));
+
     public final static MatchField<PacketType> PACKET_TYPE =
             new MatchField<PacketType>("packet_type", MatchFields.PACKET_TYPE);
 
@@ -328,105 +330,12 @@ public class MatchField<F extends OFValueType<F>> {
     public final static MatchField<OFVlanVidMatch> BSN_INNER_VLAN_VID =
             new MatchField<OFVlanVidMatch>("bsn_inner_vlan_vid", MatchFields.BSN_INNER_VLAN_VID);
 
-    public final static MatchField<OduSignalID> EXP_ODU_SIG_ID =
-            new MatchField<OduSignalID>("exp_odu_sig_id", MatchFields.EXP_ODU_SIG_ID);
-
-    public final static MatchField<U8> EXP_ODU_SIGTYPE =
-            new MatchField<U8>("exp_odu_sigtype", MatchFields.EXP_ODU_SIGTYPE);
-
-    public final static MatchField<CircuitSignalID> EXP_OCH_SIG_ID =
-            new MatchField<CircuitSignalID>("exp_och_sig_id", MatchFields.EXP_OCH_SIG_ID);
-
-    public final static MatchField<U8> EXP_OCH_SIGTYPE =
-            new MatchField<U8>("exp_och_sigtype", MatchFields.EXP_OCH_SIGTYPE);
-
-    public final static MatchField<U32> REG0 =
-            new MatchField<U32>("reg0", MatchFields.REG0);
-
-    public final static MatchField<U32> REG1 =
-            new MatchField<U32>("reg1", MatchFields.REG1);
-
-    public final static MatchField<U32> REG2 =
-            new MatchField<U32>("reg2", MatchFields.REG2);
-
-    public final static MatchField<U32> REG3 =
-            new MatchField<U32>("reg3", MatchFields.REG3);
-
-    public final static MatchField<U32> REG4 =
-            new MatchField<U32>("reg4", MatchFields.REG4);
-
-    public final static MatchField<U32> REG5 =
-            new MatchField<U32>("reg5", MatchFields.REG5);
-
-    public final static MatchField<U32> REG6 =
-            new MatchField<U32>("reg6", MatchFields.REG6);
-
-    public final static MatchField<U32> REG7 =
-            new MatchField<U32>("reg7", MatchFields.REG7);
-
-    public final static MatchField<U32> NSP =
-            new MatchField<U32>("nsp", MatchFields.NSP);
-
-    public final static MatchField<U8> NSI =
-            new MatchField<U8>("nsi", MatchFields.NSI);
-
-    public final static MatchField<U32> NSH_C1 =
-            new MatchField<U32>("nshc1", MatchFields.NSH_C1);
-
-    public final static MatchField<U32> NSH_C2 =
-            new MatchField<U32>("nshc2", MatchFields.NSH_C2);
-
-    public final static MatchField<U32> NSH_C3 =
-            new MatchField<U32>("nshc3", MatchFields.NSH_C3);
-
-    public final static MatchField<U32> NSH_C4 =
-            new MatchField<U32>("nshc4", MatchFields.NSH_C4);
-
-    public final static MatchField<U8> NSH_MDTYPE =
-            new MatchField<U8>("nsh_mdtype", MatchFields.NSH_MDTYPE);
-
-    public final static MatchField<U8> NSH_NP =
-            new MatchField<U8>("nsh_np", MatchFields.NSH_NP);
-
-    public final static MatchField<MacAddress> ENCAP_ETH_SRC =
-            new MatchField<MacAddress>("encap_eth_src", MatchFields.ENCAP_ETH_SRC);
-
-    public final static MatchField<MacAddress> ENCAP_ETH_DST =
-            new MatchField<MacAddress>("encap_eth_dst", MatchFields.ENCAP_ETH_DST);
-
-    public final static MatchField<U16> ENCAP_ETH_TYPE =
-            new MatchField<U16>("encap_eth_type", MatchFields.ENCAP_ETH_TYPE);
-
-    public final static MatchField<U16> TUN_FLAGS =
-            new MatchField<U16>("tun_flags", MatchFields.TUN_FLAGS);
-
-    public final static MatchField<U16> TUN_GBP_ID =
-            new MatchField<U16>("tun_gbp_id", MatchFields.TUN_GBP_ID);
-
-    public final static MatchField<U8> TUN_GBP_FLAGS =
-            new MatchField<U8>("tun_gbp_flags", MatchFields.TUN_GBP_FLAGS);
-
-    public final static MatchField<U8> TUN_GPE_NP =
-            new MatchField<U8>("tun_gpe_np", MatchFields.TUN_GPE_NP);
-
-    public final static MatchField<U8> TUN_GPE_FLAGS =
-            new MatchField<U8>("tun_gpe_flags", MatchFields.TUN_GPE_NP);
-
     public final static MatchField<VFI> BSN_VFI =
             new MatchField<VFI>("bsn_vfi", MatchFields.BSN_VFI);
 
-    public final static MatchField<U16> OFDPA_MPLS_TYPE =
-            new MatchField<U16>("ofdpa_mpls_type", MatchFields.OFDPA_MPLS_TYPE);
-
-    public final static MatchField<U8> OFDPA_QOS_INDEX =
-            new MatchField<U8>("ofdpa_qos_index", MatchFields.OFDPA_QOS_INDEX);
-
-    public final static MatchField<U32> OFDPA_MPLS_L2_PORT =
-            new MatchField<U32>("ofdpa_mpls_l2_port", MatchFields.OFDPA_MPLS_L2_PORT);
-
-    public final static MatchField<U16> OFDPA_OVID =
-            new MatchField<U16>("ofdpa_ovid", MatchFields.OFDPA_OVID,
-                new Prerequisite<OFVlanVidMatch>(MatchField.VLAN_VID));
+    public final static MatchField<OFBooleanValue> BSN_IP_FRAGMENTATION =
+            new MatchField<OFBooleanValue>("bsn_ip_fragmentation", MatchFields.BSN_IP_FRAGMENTATION,
+                    new Prerequisite<EthType>(MatchField.ETH_TYPE, EthType.IPv4, EthType.IPv6));
 
     public String getName() {
         return name;

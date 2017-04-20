@@ -57,8 +57,6 @@ oftype_to_wireshark_type = {
     "of_oxs_t": "bytes",
     "of_meter_features_t": "bytes",
     "of_bitmap_128_t": "bytes",
-    "of_bitmap_512_t": "bytes",
-    "of_checksum_128_t": "bytes",
     "of_controller_uri_t":"stringz",
 }
 
